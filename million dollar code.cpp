@@ -2,5 +2,5 @@
 using namespace std;
 int main()
 {
-	cout<<"Super secret code";
+	cout<<"arkako code herna laaj xaina million dollar dekhne bittikai";
 }
