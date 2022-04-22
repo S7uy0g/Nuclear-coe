@@ -6,16 +6,17 @@ using namespace std;
 class EMP
 {
 	int id;
-	char name[20],address[20];
+	string name,address;
 	public:
 		void getDetails()
 		{
+			fflush(stdin);
 			cout<<"Enter Details:"<<endl;
 			cout<<"Name:";
-			cin.get(name,20);
+			getline(cin,name);
 			fflush(stdin);
 			cout<<"Address:";
-			cin.get(address,20);
+			getline(cin,address);
 			fflush(stdin);
 			cout<<"ID:";
 			cin>>id;
@@ -24,13 +25,14 @@ class EMP
 };
 class salary:public EMP
 {
+		public:
 	int basical;
 	char post[20];
-	public:
 		void getSalPos()
 		{
+			fflush(stdin);
 			cout<<"Basic Salary:";
-			cin>>basical
+			cin>>basical;
 			fflush(stdin);
 			cout<<"Post:";
 			cin.get(post,20);
@@ -44,17 +46,34 @@ class record:public salary
 	static int month;
 	    void recData()
 	    {
+	    	fflush(stdin);
 	    	cout<<"Absent Days:";
 	    	cin>>absent;
+	    	fflush(stdin);
 	    	total=month-absent;
-	    	cout<<"Total:"<<total;
+	    	cout<<"Total days present:"<<total<<endl;
 		}
 		void calSal()
 		{
 			updated=basical/30;
 			basical=updated*total;
+			cout<<"Salary Obtained(after deducting absent days salary):"<<basical<<endl;
 		}
 	
 };
-int record::month=30
+int record::month=30;
+int main()
+{
+	record obj[3];
+	int i,n;
+	cout<<"Enter how many emp det you want to enter:";
+	cin>>n;
+	for(i=0;i<n;i++)
+	{
+		obj[i].getDetails();
+		obj[i].getSalPos();
+		obj[i].recData();
+		obj[i].calSal();
+	}
+}
 
