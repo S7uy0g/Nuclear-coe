@@ -1,37 +1,48 @@
-//WAP to concatinate two string by overloading binary operator + (using string class) / (char).
-
-#include<iostream>
-using namespace std;
-
-class Det{
-	string name;
-	public:
-		void getString(string str)
-		{
-			name = str;
-		}
-		void displayString()
-		{
-			cout<<name;
-		}
-		Det operator + (const Det &str)
-		{
-			Det temp;
-			temp.name = this->name + " " + str.name;
-			return temp;
-		}
-};
+#include<stdio.h>
+#include<conio.h>
+#include<math.h>
+float function(float x)
+{
+	return((x*x*x)+(x*x)+x+7);
+}
 int main()
 {
-	Det obj1,obj2,result;
-	string str1;
-	cout << "Enter first String: ";
-	getline(cin,str1);
-	obj1.getString(str1);
-	cout << "Enter second String: ";
-	getline(cin,str1);
-	obj2.getString(str1);
-	result = obj1 + obj2;
-	result.displayString();
-	return 0;
+	float a,b,E,f0,f1,f2,x,ans,step;
+	printf("Enter two guesses:");
+	printf("a:");
+	scanf("%f",&a);
+	printf("b:");
+	scanf("%f",&b);
+	printf("Enter ERROR:");
+	scanf("%f",&E);
+	do
+	{
+	f1=function(a);
+	f2=function(b);
+	if(f1*f2>0)
+	{
+		printf("a and b do not have any root!!!");
+		return 0;
+	}
+	else
+	{
+		x=(a+b)/2;
+		f0=function(x);
+		if(f1*f0<0)
+		{
+			b=x;
+			f2=f0;
+		}
+		else
+		{
+			a=x;
+			f1=f0;
+		}
+		printf("Iteration:%f",x);
+		step=(b-a)/b;
+	}
+	}
+	while(step<E);
+	ans=(a+b)/2;
+	printf("Root is %f",ans);
 }
